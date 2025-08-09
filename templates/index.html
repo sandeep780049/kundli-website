@@ -32,31 +32,34 @@
     }
 
     /* Welcome section background with overlay */
-    .welcome-container {
-      position: relative;
-      background-image: url('{{ url_for("static", filename="images/zodiac-wheel.jpg") }}');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 60px 20px;
-      color: #fff;
-      text-align: center;
-      border-radius: 12px;
-      margin-bottom: 30px;
-    }
-    .welcome-container::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-      border-radius: 12px;
-    }
-    .welcome-container h1,
-    .welcome-container p {
-      position: relative;
-      z-index: 1;
-    }
+    
+<style>
+  .welcome-container {
+    position: relative;
+    background-image: url('{{ url_for("static", filename="zodiac-bg.jpeg") }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  .welcome-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+    border-radius: 12px;
+  }
+  .welcome-container h1,
+  .welcome-container p {
+    position: relative;
+    z-index: 1;
+  }
+</style>
 
     h1 {
       text-align: center; 
