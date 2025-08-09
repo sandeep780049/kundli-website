@@ -90,6 +90,33 @@ def home():
             except Exception:
                 error = "Invalid date format."
     return render_template('index.html', kundli=kundli, tips=tips, error=error)
+    @app.route('/articles')
+def articles():
+    # List of articles - you can expand later
+    articles_list = [
+        {
+            "title": "Understanding Your Zodiac Sign",
+            "content": """
+            Your Zodiac sign is determined by the position of the Sun at the time of your birth. Each sign has unique traits, strengths, and challenges.
+            Learning about your Zodiac helps you understand yourself and others better.
+            """
+        },
+        {
+            "title": "The Influence of Planets in Astrology",
+            "content": """
+            In astrology, planets represent different energies and influences in your life. For example, Mars governs courage and action, while Venus relates to love and beauty.
+            Knowing your lucky planets can guide your decisions.
+            """
+        },
+        {
+            "title": "How to Interpret Your Kundli",
+            "content": """
+            A Kundli is a map of the sky at your birth moment, showing positions of planets and houses. It reveals insights about your personality, career, relationships, and future.
+            Beginners can start with their Zodiac sign and gradually explore deeper aspects.
+            """
+        }
+    ]
+    return render_template('articles.html', articles=articles_list)
 
 
 if __name__ == '__main__':
