@@ -118,5 +118,7 @@ def articles():
     ]
     return render_template('articles.html', articles=articles_list)
 
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
