@@ -3,59 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Astrology Articles - Kundli & Future Tips Generator</title>
+  <title>Astrology Articles - Kundli Generator</title>
+  <meta name="description" content="Explore detailed articles on astrology topics including zodiac signs, planetary effects, and astrology basics." />
+  <meta name="keywords" content="astrology articles, zodiac signs, astrology tips, kundli guide, astrology glossary" />
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       max-width: 700px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: #f9fbfd;
-      color: #2c3e50;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #2980b9;
-    }
-    article {
-      background: white;
-      padding: 20px 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 25px;
-    }
-    article h2 {
-      margin-top: 0;
-      color: #34495e;
-    }
-    article p {
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-    a {
-      color: #3498db;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    a:hover {
-      text-decoration: underline;
+      margin: 20px auto;
+      padding: 0 15px;
+      background:#f7fafc;
+      color:#333;
     }
     nav {
-      margin-bottom: 30px;
-      text-align: center;
+      text-align:center;
+      margin-bottom: 20px;
     }
-  </style>
-</head>
-<body>
-  <nav><a href="/">← Back to Home</a></nav>
-  <h1>Astrology Articles</h1>
-
-  {% for article in articles %}
-    <article>
-      <h2>{{ article.title }}</h2>
-      <p>{{ article.content }}</p>
-    </article>
-  {% endfor %}
-</body>
-</html>
+    nav a {
+      margin: 0 10px;
+      color:#3498db;
+      text-decoration:none;
+      font-weight:bold;
+    }
+    nav a:hover {
+      text-decoration:underline;
+    }
+    h1 {
+      text-align:center;
+      color:#2c3e50;
+    }
+    article {
+      background:#fff;
+      padding:20px;
+      margin-bottom:20px;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    }
+    article h2 {
+      margin-top:0;
+      color:#
