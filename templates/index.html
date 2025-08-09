@@ -6,26 +6,35 @@
   <title>Kundli & Future Tips Generator</title>
   <meta name="description" content="Generate your Kundli and get astrology-based future tips. Understand your zodiac sign and planetary influences with our free tool." />
   <meta name="keywords" content="kundli, astrology, horoscope, zodiac, future tips, astrology guide, planetary effects" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background:#f7fafc; color:#333; padding:20px; max-width:700px; margin:auto;
+      background: #f7fafc; 
+      color: #333; 
+      padding: 20px; 
+      max-width: 700px; 
+      margin: auto;
       line-height: 1.6;
     }
     nav {
-      text-align:center; margin-bottom: 25px;
+      text-align: center; 
+      margin-bottom: 25px;
     }
     nav a {
-      margin: 0 12px; color:#3498db; text-decoration:none; font-weight:bold;
+      margin: 0 12px; 
+      color: #3498db; 
+      text-decoration: none; 
+      font-weight: bold;
     }
     nav a:hover {
-      text-decoration:underline;
+      text-decoration: underline;
     }
 
-    /* Welcome section background */
+    /* Welcome section background with overlay */
     .welcome-container {
       position: relative;
-      background-image: url('https://ibb.co/Xx8VfGsD.jpg'); /* Replace with your uploaded image link */
+      background-image: url('{{ url_for("static", filename="images/zodiac-wheel.jpg") }}');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -39,7 +48,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6); /* dark overlay for readability */
+      background: rgba(0, 0, 0, 0.6);
       z-index: 0;
       border-radius: 12px;
     }
@@ -50,50 +59,89 @@
     }
 
     h1 {
-      text-align:center; color:#2c3e50; margin-bottom: 30px;
+      text-align: center; 
+      color: #2c3e50; 
+      margin-bottom: 30px;
       text-shadow: 1px 1px 3px #a0bcd8;
       font-size: 2.8rem;
     }
     form {
-      background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      background: #fff; 
+      padding: 25px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     label {
-      display:block; margin-top:15px; font-weight:bold; font-size:1.1rem;
+      display: block; 
+      margin-top: 15px; 
+      font-weight: bold; 
+      font-size: 1.1rem;
       color: #34495e;
     }
     input, button {
-      width:100%; padding:12px; margin-top:6px; border-radius:8px; border:1.5px solid #ccc;
-      font-size:1rem; transition: border-color 0.3s ease;
+      width: 100%; 
+      padding: 12px; 
+      margin-top: 6px; 
+      border-radius: 8px; 
+      border: 1.5px solid #ccc;
+      font-size: 1rem; 
+      transition: border-color 0.3s ease;
     }
     input:focus {
-      border-color:#3498db; outline:none;
+      border-color: #3498db; 
+      outline: none;
     }
     button {
-      background:#3498db; color:#fff; font-weight:bold; border:none; cursor:pointer; margin-top:25px;
-      font-size:1.2rem; transition: background-color 0.3s ease;
+      background: #3498db; 
+      color: #fff; 
+      font-weight: bold; 
+      border: none; 
+      cursor: pointer; 
+      margin-top: 25px;
+      font-size: 1.2rem; 
+      transition: background-color 0.3s ease;
     }
     button:hover {
-      background:#2980b9;
+      background: #2980b9;
     }
     .error {
-      color:#e74c3c; font-weight:bold; margin-bottom:20px; text-align:center;
+      color: #e74c3c; 
+      font-weight: bold; 
+      margin-bottom: 20px; 
+      text-align: center;
     }
     .result {
-      background:#fff; margin-top:25px; padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
-      color:#2c3e50;
-      line-height:1.5;
+      background: #fff; 
+      margin-top: 25px; 
+      padding: 25px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      color: #2c3e50;
+      line-height: 1.5;
     }
     .result h2 {
-      margin-top:0; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom:15px;
+      margin-top: 0; 
+      border-bottom: 2px solid #3498db; 
+      padding-bottom: 8px; 
+      margin-bottom: 15px;
       color: #34495e;
     }
     .faq {
-      background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
-      margin-top:40px; margin-bottom:40px;
+      background: #fff; 
+      padding: 30px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-top: 40px; 
+      margin-bottom: 40px;
       color: #2c3e50;
     }
     .faq h2 {
-      text-align:center; color:#2c3e50; margin-top:0; margin-bottom:30px; border-bottom:3px solid #3498db; padding-bottom:10px;
+      text-align: center; 
+      color: #2c3e50; 
+      margin-top: 0; 
+      margin-bottom: 30px; 
+      border-bottom: 3px solid #3498db; 
+      padding-bottom: 10px;
     }
     .faq-item {
       margin-bottom: 20px;
@@ -108,36 +156,44 @@
       margin: 0;
       line-height: 1.5;
     }
-    section.about-privacy {
-      background:#fff; padding:25px 30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
-      margin-bottom:40px; color:#2c3e50; line-height:1.6;
-    }
-    section.about-privacy h2 {
-      text-align:center; margin-top:0; margin-bottom:20px; border-bottom:2px solid #3498db; padding-bottom:8px;
-    }
+    section.about-privacy,
     section.extra-info {
-      background:#fff; padding:25px 30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
-      color:#2c3e50; line-height:1.6; margin-bottom:40px;
+      background: #fff; 
+      padding: 25px 30px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 40px; 
+      color: #2c3e50; 
+      line-height: 1.6;
     }
+    section.about-privacy h2,
     section.extra-info h2 {
-      text-align:center; margin-top:0; margin-bottom:20px; border-bottom:2px solid #3498db; padding-bottom:8px;
+      text-align: center; 
+      margin-top: 0; 
+      margin-bottom: 20px; 
+      border-bottom: 2px solid #3498db; 
+      padding-bottom: 8px;
     }
     footer {
-      text-align:center; font-size:0.9rem; color:#666; background:#f2f2f2; padding:20px 30px; border-radius:10px;
-      margin-bottom: 40px; line-height:1.4;
+      text-align: center; 
+      font-size: 0.9rem; 
+      color: #666; 
+      background: #f2f2f2; 
+      padding: 20px 30px; 
+      border-radius: 10px;
+      margin-bottom: 40px; 
+      line-height: 1.4;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
     @media (max-width: 600px) {
-      body { padding:15px 10px; }
+      body { padding: 15px 10px; }
       form, .result, .faq, section.about-privacy, section.extra-info, footer {
-        padding:20px 15px;
+        padding: 20px 15px;
       }
-      h1 { font-size:2.2rem; }
+      h1 { font-size: 2.2rem; }
       .welcome-container { padding: 40px 15px; }
-      button { font-size:1rem; padding:12px; }
-      .faq-item h3 {
-        font-size: 1.1rem;
-      }
+      button { font-size: 1rem; padding: 12px; }
+      .faq-item h3 { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -184,52 +240,42 @@
 
   <section class="faq" aria-label="Frequently Asked Questions">
     <h2>Frequently Asked Questions</h2>
-
     <div class="faq-item">
       <h3>What is a Kundli?</h3>
       <p>A Kundli, or birth chart, is an astrological chart created based on your birth date, time, and place, representing the positions of planets and stars at your birth moment.</p>
     </div>
-
     <div class="faq-item">
       <h3>How is my Zodiac sign determined?</h3>
       <p>Your Zodiac sign is based on the position of the Sun on the date you were born, defining your personality traits and tendencies.</p>
     </div>
-
     <div class="faq-item">
       <h3>Why do you ask for my birth place?</h3>
       <p>Your birth place affects the local time and astrological calculations, providing a more accurate and personalized Kundli.</p>
     </div>
-
     <div class="faq-item">
       <h3>Are these tips 100% accurate?</h3>
       <p>This website provides general astrological guidance and tips. For precise and personal readings, please consult a professional astrologer.</p>
     </div>
-
     <div class="faq-item">
       <h3>Can I use this Kundli for major life decisions?</h3>
       <p>Use this tool as a guide, but always consider consulting experts before making significant life choices.</p>
     </div>
-
     <div class="faq-item">
       <h3>Do you store my personal information?</h3>
       <p>No, we do not store or share your birth date or place. All data is processed temporarily to generate your Kundli and tips.</p>
     </div>
-
     <div class="faq-item">
       <h3>How often should I check my Kundli?</h3>
       <p>You can revisit anytime, especially after major life changes, to gain new insights and guidance.</p>
     </div>
-
     <div class="faq-item">
       <h3>Is astrology scientifically proven?</h3>
       <p>Astrology is a traditional belief system and not a science. Many people find it useful for self-reflection, but results vary individually.</p>
     </div>
-
     <div class="faq-item">
       <h3>Can I trust the future tips?</h3>
       <p>Our tips are general and for guidance only. For personalized advice, consulting an experienced astrologer is recommended.</p>
     </div>
-
   </section>
 
   <section class="about-privacy" aria-label="About and Privacy Policy">
