@@ -3,7 +3,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Zodiac date ranges and info
+# Zodiac info (same as before)
 zodiac_signs = [
     {"sign": "Capricorn", "start": (12, 22), "end": (1, 19),
      "element": "Earth", "lucky_planet": "Saturn",
@@ -49,13 +49,11 @@ def get_zodiac_sign(month, day):
         end_month, end_day = zodiac["end"]
 
         if start_month == 12 and end_month == 1:
-            # Capricorn case spanning year end
             if (month == 12 and day >= start_day) or (month == 1 and day <= end_day):
                 return zodiac
         else:
             if (month == start_month and day >= start_day) or (month == end_month and day <= end_day) or (start_month < month < end_month):
                 return zodiac
-    # fallback (should never happen)
     return None
 
 @app.route('/', methods=['GET', 'POST'])
@@ -66,8 +64,11 @@ def home():
 
     if request.method == 'POST':
         birth_date_str = request.form.get('birth_date')
+        birth_place = request.form.get('birth_place', '').strip()
         if not birth_date_str:
             error = "Please enter a valid birth date."
+        elif not birth_place:
+            error = "Please enter your birth place."
         else:
             try:
                 birth_date = datetime.strptime(birth_date_str, '%Y-%m-%d')
@@ -75,16 +76,21 @@ def home():
                 if zodiac:
                     kundli = {
                         "birth_date": birth_date.strftime("%d %B %Y"),
+                        "birth_place": birth_place.title(),
                         "zodiac_sign": zodiac["sign"],
                         "element": zodiac["element"],
-                        "lucky_planet": zodiac["lucky_planet"]
+                        "lucky_planet": zodiac["lucky_planet"],
+                        "general_note": f"As a {zodiac['sign']} born in {birth_place.title()}, your energies align with the element {zodiac['element']}."
                     }
-                    tips = zodiac["tips"]
+                    # Enhanced tips with place info included
+                    tips = (f"{zodiac['tips']} Also, living in {birth_place.title()} can influence your experiences uniquely. "
+                            "Stay positive and open to new possibilities.")
                 else:
                     error = "Could not determine your zodiac sign."
-            except Exception as e:
+            except Exception:
                 error = "Invalid date format."
     return render_template('index.html', kundli=kundli, tips=tips, error=error)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
