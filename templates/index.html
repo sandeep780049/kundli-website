@@ -21,6 +21,34 @@
     nav a:hover {
       text-decoration:underline;
     }
+
+    /* Welcome section background */
+    .welcome-container {
+      position: relative;
+      background-image: url('https://ibb.co/Xx8VfGsD.jpg'); /* Replace with your uploaded image link */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 60px 20px;
+      color: #fff;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    .welcome-container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6); /* dark overlay for readability */
+      z-index: 0;
+      border-radius: 12px;
+    }
+    .welcome-container h1,
+    .welcome-container p {
+      position: relative;
+      z-index: 1;
+    }
+
     h1 {
       text-align:center; color:#2c3e50; margin-bottom: 30px;
       text-shadow: 1px 1px 3px #a0bcd8;
@@ -105,6 +133,7 @@
         padding:20px 15px;
       }
       h1 { font-size:2.2rem; }
+      .welcome-container { padding: 40px 15px; }
       button { font-size:1rem; padding:12px; }
       .faq-item h3 {
         font-size: 1.1rem;
@@ -119,7 +148,10 @@
     <a href="/articles">Astrology Articles</a>
   </nav>
 
-  <h1>Welcome to the Kundli & Future Tips Generator</h1>
+  <div class="welcome-container">
+    <h1>Welcome to the Kundli & Future Tips Generator</h1>
+    <p>Discover your zodiac sign, Kundli, and personalized astrology tips instantly.</p>
+  </div>
 
   <form method="POST" novalidate>
     {% if error %}
