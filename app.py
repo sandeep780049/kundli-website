@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
-# Zodiac info (same as before)
 zodiac_signs = [
     {"sign": "Capricorn", "start": (12, 22), "end": (1, 19),
      "element": "Earth", "lucky_planet": "Saturn",
@@ -82,7 +82,6 @@ def home():
                         "lucky_planet": zodiac["lucky_planet"],
                         "general_note": f"As a {zodiac['sign']} born in {birth_place.title()}, your energies align with the element {zodiac['element']}."
                     }
-                    # Enhanced tips with place info included
                     tips = (f"{zodiac['tips']} Also, living in {birth_place.title()} can influence your experiences uniquely. "
                             "Stay positive and open to new possibilities.")
                 else:
@@ -90,9 +89,9 @@ def home():
             except Exception:
                 error = "Invalid date format."
     return render_template('index.html', kundli=kundli, tips=tips, error=error)
-    @app.route('/articles')
+
+@app.route('/articles')
 def articles():
-    # List of articles - you can expand later
     articles_list = [
         {
             "title": "Understanding Your Zodiac Sign",
@@ -118,10 +117,6 @@ def articles():
     ]
     return render_template('articles.html', articles=articles_list)
 
-import os
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
-
-
+    app.run(host='0.0.0.0', port=port)
