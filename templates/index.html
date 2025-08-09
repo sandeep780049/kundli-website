@@ -4,29 +4,116 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kundli & Future Tips Generator</title>
-  <meta name="description" content="Generate your Kundli and get astrology-based future tips." />
-  <meta name="keywords" content="kundli, astrology, horoscope, zodiac, future tips" />
+  <meta name="description" content="Generate your Kundli and get astrology-based future tips. Understand your zodiac sign and planetary influences with our free tool." />
+  <meta name="keywords" content="kundli, astrology, horoscope, zodiac, future tips, astrology guide, planetary effects" />
   <style>
-    /* Same styles as before, concise here for brevity */
     body {
       font-family: Arial, sans-serif;
-      background:#f7fafc; color:#333; padding:20px; max-width:600px; margin:auto;
+      background:#f7fafc; color:#333; padding:20px; max-width:700px; margin:auto;
+      line-height: 1.6;
     }
-    h1 {text-align:center; color:#2c3e50;}
-    form {background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-    label {display:block; margin-top:15px; font-weight:bold;}
-    input, button {width:100%; padding:10px; margin-top:5px; border-radius:5px; border:1px solid #ccc;}
-    button {background:#3498db; color:#fff; font-weight:bold; cursor:pointer; border:none; margin-top:20px;}
-    button:hover {background:#2980b9;}
-    .error {color:#e74c3c; text-align:center; font-weight:bold;}
-    .result {background:#fff; margin-top:20px; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-    .result h2 {margin-top:0;}
-    nav {text-align:center; margin-bottom:20px;}
-    nav a {margin: 0 10px; color:#3498db; text-decoration:none; font-weight:bold;}
-    nav a:hover {text-decoration:underline;}
+    nav {
+      text-align:center; margin-bottom: 25px;
+    }
+    nav a {
+      margin: 0 12px; color:#3498db; text-decoration:none; font-weight:bold;
+    }
+    nav a:hover {
+      text-decoration:underline;
+    }
+    h1 {
+      text-align:center; color:#2c3e50; margin-bottom: 30px;
+      text-shadow: 1px 1px 3px #a0bcd8;
+      font-size: 2.8rem;
+    }
+    form {
+      background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    }
+    label {
+      display:block; margin-top:15px; font-weight:bold; font-size:1.1rem;
+      color: #34495e;
+    }
+    input, button {
+      width:100%; padding:12px; margin-top:6px; border-radius:8px; border:1.5px solid #ccc;
+      font-size:1rem; transition: border-color 0.3s ease;
+    }
+    input:focus {
+      border-color:#3498db; outline:none;
+    }
+    button {
+      background:#3498db; color:#fff; font-weight:bold; border:none; cursor:pointer; margin-top:25px;
+      font-size:1.2rem; transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background:#2980b9;
+    }
+    .error {
+      color:#e74c3c; font-weight:bold; margin-bottom:20px; text-align:center;
+    }
+    .result {
+      background:#fff; margin-top:25px; padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      color:#2c3e50;
+      line-height:1.5;
+    }
+    .result h2 {
+      margin-top:0; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom:15px;
+      color: #34495e;
+    }
+    .faq {
+      background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      margin-top:40px; margin-bottom:40px;
+      color: #2c3e50;
+    }
+    .faq h2 {
+      text-align:center; color:#2c3e50; margin-top:0; margin-bottom:30px; border-bottom:3px solid #3498db; padding-bottom:10px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .faq-item h3 {
+      font-size: 1.3rem;
+      color: #2980b9;
+      margin-bottom: 8px;
+    }
+    .faq-item p {
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+    section.about-privacy {
+      background:#fff; padding:25px 30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom:40px; color:#2c3e50; line-height:1.6;
+    }
+    section.about-privacy h2 {
+      text-align:center; margin-top:0; margin-bottom:20px; border-bottom:2px solid #3498db; padding-bottom:8px;
+    }
+    section.extra-info {
+      background:#fff; padding:25px 30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      color:#2c3e50; line-height:1.6; margin-bottom:40px;
+    }
+    section.extra-info h2 {
+      text-align:center; margin-top:0; margin-bottom:20px; border-bottom:2px solid #3498db; padding-bottom:8px;
+    }
+    footer {
+      text-align:center; font-size:0.9rem; color:#666; background:#f2f2f2; padding:20px 30px; border-radius:10px;
+      margin-bottom: 40px; line-height:1.4;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 600px) {
+      body { padding:15px 10px; }
+      form, .result, .faq, section.about-privacy, section.extra-info, footer {
+        padding:20px 15px;
+      }
+      h1 { font-size:2.2rem; }
+      button { font-size:1rem; padding:12px; }
+      .faq-item h3 {
+        font-size: 1.1rem;
+      }
+    }
   </style>
 </head>
 <body>
+
   <nav>
     <a href="/">Home</a>
     <a href="/articles">Astrology Articles</a>
@@ -39,17 +126,17 @@
       <div class="error">{{ error }}</div>
     {% endif %}
 
-    <label for="birth_date">Birth Date:</label>
+    <label for="birth_date">Enter your Birth Date:</label>
     <input type="date" id="birth_date" name="birth_date" required />
 
-    <label for="birth_place">Birth Place:</label>
-    <input type="text" id="birth_place" name="birth_place" placeholder="Your birth place" required />
+    <label for="birth_place">Enter your Birth Place:</label>
+    <input type="text" id="birth_place" name="birth_place" placeholder="e.g. New Delhi" required />
 
     <button type="submit">Generate Kundli & Tips</button>
   </form>
 
   {% if kundli %}
-  <div class="result">
+  <div class="result" role="region" aria-live="polite">
     <h2>Your Kundli</h2>
     <p><strong>Birth Date:</strong> {{ kundli.birth_date }}</p>
     <p><strong>Birth Place:</strong> {{ kundli.birth_place }}</p>
@@ -58,39 +145,78 @@
     <p><strong>Lucky Planet:</strong> {{ kundli.lucky_planet }}</p>
     <p>{{ kundli.general_note }}</p>
 
-    <h3>Future Tips</h3>
+    <h2>Future Tips</h2>
     <p>{{ tips }}</p>
   </div>
   {% endif %}
 
-  <section>
+  <section class="faq" aria-label="Frequently Asked Questions">
     <h2>Frequently Asked Questions</h2>
-    <details>
-      <summary>What is a Kundli?</summary>
-      <p>A Kundli is an astrological birth chart showing planetary positions at your birth.</p>
-    </details>
-    <details>
-      <summary>How is my Zodiac sign determined?</summary>
-      <p>By the Sun’s position on your birth date.</p>
-    </details>
-    <details>
-      <summary>Why provide birth place?</summary>
-      <p>Birth place affects time zone and astrological calculations.</p>
-    </details>
-    <details>
-      <summary>Are these tips 100% accurate?</summary>
-      <p>This is general guidance; consult a professional astrologer for detailed reading.</p>
-    </details>
+
+    <div class="faq-item">
+      <h3>What is a Kundli?</h3>
+      <p>A Kundli, or birth chart, is an astrological chart created based on your birth date, time, and place, representing the positions of planets and stars at your birth moment.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How is my Zodiac sign determined?</h3>
+      <p>Your Zodiac sign is based on the position of the Sun on the date you were born, defining your personality traits and tendencies.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Why do you ask for my birth place?</h3>
+      <p>Your birth place affects the local time and astrological calculations, providing a more accurate and personalized Kundli.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Are these tips 100% accurate?</h3>
+      <p>This website provides general astrological guidance and tips. For precise and personal readings, please consult a professional astrologer.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I use this Kundli for major life decisions?</h3>
+      <p>Use this tool as a guide, but always consider consulting experts before making significant life choices.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Do you store my personal information?</h3>
+      <p>No, we do not store or share your birth date or place. All data is processed temporarily to generate your Kundli and tips.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How often should I check my Kundli?</h3>
+      <p>You can revisit anytime, especially after major life changes, to gain new insights and guidance.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Is astrology scientifically proven?</h3>
+      <p>Astrology is a traditional belief system and not a science. Many people find it useful for self-reflection, but results vary individually.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I trust the future tips?</h3>
+      <p>Our tips are general and for guidance only. For personalized advice, consulting an experienced astrologer is recommended.</p>
+    </div>
+
   </section>
 
-  <section>
-    <h2>About & Privacy Policy</h2>
-    <p>This site provides free Kundli generation and astrology tips. No personal data is stored or shared.</p>
-    <p>Use responsibly. For questions, contact us.</p>
+  <section class="about-privacy" aria-label="About and Privacy Policy">
+    <h2>About This Website & Privacy Policy</h2>
+    <p>This website offers a free tool to generate your basic Kundli and provide astrology-based future tips. We respect your privacy and do not store or share your personal data.</p>
+    <p>All birth details you enter are used solely to create your Kundli and tips during your session and are not saved.</p>
+    <p>We encourage responsible use and consultation with professional astrologers for detailed guidance.</p>
   </section>
 
-  <footer style="text-align:center; font-size:0.9em; color:#666; margin-top:40px;">
-    <strong>Disclaimer:</strong> For entertainment purposes only. Not professional advice.
+  <section class="extra-info" aria-label="Additional Astrology Insights">
+    <h2>Explore More About Astrology</h2>
+    <p>Astrology is a fascinating study of how celestial bodies influence human life. Understanding your Zodiac sign and planetary positions can help you make better decisions and improve your self-awareness.</p>
+    <p>Many believe that planets affect not just personality traits but also relationships, career paths, and health. Our Kundli generator offers a glimpse into these aspects based on your birth details.</p>
+    <p>For deeper knowledge, explore our <a href="/articles" style="color:#2980b9; text-decoration:none;">Astrology Articles</a> section.</p>
+  </section>
+
+  <footer>
+    <strong>Disclaimer:</strong> This website is for entertainment and informational purposes only. It does not replace professional astrological advice. Use the information responsibly and at your own discretion.
   </footer>
+
 </body>
 </html>
