@@ -1,102 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kundli & Future Tips Generator</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f0f4f8;
-            color: #333;
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        form {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
-            margin-bottom: 30px;
-        }
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-        input[type="date"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1.1em;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #2980b9;
-        }
-        .result, .error {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
-        }
-        .error {
-            color: red;
-            font-weight: 600;
-        }
-        .result h2 {
-            margin-top: 0;
-            color: #34495e;
-        }
-        .result p {
-            font-size: 1.1em;
-            line-height: 1.4;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kundli & Future Tips Generator</title>
+  
+  <!-- SEO Meta -->
+  <meta name="description" content="Generate your Kundli (astrological birth chart) based on your birth date and place. Get personalized future tips and astrology insights." />
+  <meta name="keywords" content="kundli, horoscope, astrology, birth chart, zodiac sign, future tips, astrology website" />
+  <meta name="author" content="YourName or YourWebsite" />
+  
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f7fafc;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #2c3e50;
+      text-align: center;
+      text-shadow: 1px 1px 3px #a0bcd8;
+    }
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      color: #34495e;
+    }
+    input[type="date"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="date"]:focus,
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+    button {
+      width: 100%;
+      background-color: #3498db;
+      border: none;
+      padding: 14px;
+      font-size: 1.2rem;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .error {
+      color: #e74c3c;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .result {
+      background: white;
+      max-width: 450px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      line-height: 1.5;
+      color: #2c3e50;
+    }
+    .result h2 {
+      margin-top: 0;
+      color: #34495e;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 8px;
+    }
+    .result p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+    /* FAQ Section */
+    .faq {
+      max-width: 700px;
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      padding: 30px 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    .faq h2 {
+      color: #2c3e50;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .faq-item h3 {
+      font-size: 1.2rem;
+      color: #2980b9;
+      margin-bottom: 6px;
+    }
+    .faq-item p {
+      font-size: 1rem;
+      color: #444;
+      margin: 0;
+    }
+    /* Disclaimer */
+    footer {
+      max-width: 700px;
+      width: 100%;
+      font-size: 0.9rem;
+      color: #666;
+      background: #f2f2f2;
+      padding: 20px 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      text-align: center;
+    }
+    /* About & Privacy */
+    .about {
+      max-width: 700px;
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      color: #2c3e50;
+      line-height: 1.5;
+    }
+    .about h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 15px 10px;
+      }
+      form, .result, .faq, .about, footer {
+        padding: 20px 15px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      button {
+        font-size: 1rem;
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Kundli & Future Tips Generator</h1>
 
-    <form method="POST">
-        <label for="birth_date">Enter your Birth Date:</label>
-        <input type="date" id="birth_date" name="birth_date" required />
-        <button type="submit">Generate Kundli & Tips</button>
-    </form>
+  <h1>Welcome to the Kundli & Future Tips Generator</h1>
 
+  <form method="POST" novalidate>
     {% if error %}
-    <div class="error">{{ error }}</div>
+      <div class="error">{{ error }}</div>
     {% endif %}
+    
+    <label for="birth_date">Enter your Birth Date:</label>
+    <input type="date" id="birth_date" name="birth_date" required />
 
-    {% if kundli %}
+    <label for="birth_place">Enter your Birth Place:</label>
+    <input type="text" id="birth_place" name="birth_place" placeholder="e.g. New Delhi" required />
+
+    <button type="submit">Generate Kundli & Tips</button>
+  </form>
+
+  {% if kundli %}
     <div class="result">
-        <h2>Your Kundli</h2>
-        <p><strong>Birth Date:</strong> {{ kundli.birth_date }}</p>
-        <p><strong>Zodiac Sign:</strong> {{ kundli.zodiac_sign }}</p>
-        <p><strong>Element:</strong> {{ kundli.element }}</p>
-        <p><strong>Lucky Planet:</strong> {{ kundli.lucky_planet }}</p>
+      <h2>Your Kundli</h2>
+      <p><strong>Birth Date:</strong> {{ kundli.birth_date }}</p>
+      <p><strong>Birth Place:</strong> {{ kundli.birth_place }}</p>
+      <p><strong>Zodiac Sign:</strong> {{ kundli.zodiac_sign }}</p>
+      <p><strong>Element:</strong> {{ kundli.element }}</p>
+      <p><strong>Lucky Planet:</strong> {{ kundli.lucky_planet }}</p>
+      <p>{{ kundli.general_note }}</p>
 
-        <h2>Future Tips</h2>
-        <p>{{ tips }}</p>
+      <h2>Future Tips</h2>
+      <p>{{ tips }}</p>
     </div>
-    {% endif %}
+  {% endif %}
+
+  <section class="faq" aria-label="Frequently Asked Questions">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>What is a Kundli?</h3>
+      <p>A Kundli, or birth chart, is an astrological chart created based on your birth date, time, and place, representing the positions of planets and stars.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How is my Zodiac sign determined?</h3>
+      <p>Your Zodiac sign is determined by the position of the Sun on the date of your birth.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Why do you ask for my birth place?</h3>
+      <p>Your birth place affects the local time and can influence the astrological calculations, providing more personalized insights.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Are these tips 100% accurate?</h3>
+      <p>This website provides general astrological guidance and tips. For personalized and detailed readings, consult a professional astrologer.</p>
+    </div>
+  </section>
+
+  <section class="about" aria-label="About and Privacy Policy">
+    <h2>About This Website & Privacy Policy</h2>
+    <p>This website is designed to provide you with a simple, free tool to generate your basic Kundli and receive astrology-based future tips. We do not store or share your personal data. Your birth date and place are used only temporarily to generate your Kundli and tips, and no data is saved.</p>
+    <p>We respect your privacy and encourage you to use the website responsibly. For any concerns, feel free to contact us.</p>
+  </section>
+
+  <footer>
+    <strong>Disclaimer:</strong> This website is for entertainment and informational purposes only. It does not provide professional astrological advice. Use at your own discretion. We are not responsible for any decisions made based on this information.
+  </footer>
+
 </body>
 </html>
