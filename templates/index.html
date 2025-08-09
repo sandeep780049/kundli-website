@@ -32,41 +32,43 @@
     }
 
     /* Welcome section background with overlay */
-    .welcome-container {
-      position: relative;
-      background-image: url('{{ url_for("static", filename="zodiac-bg.jpeg") }}');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 60px 20px;
-      color: #fff;
-      text-align: center;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-    .welcome-container::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-      border-radius: 12px;
-    }
-    .welcome-container h1 {
-      position: relative;
-      z-index: 1;
-    }
+    /* Welcome section background with overlay */
+.welcome-container {
+  position: relative;
+  background-image: url('{{ url_for("static", filename="zodiac-bg.jpeg") }}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px; /* slightly taller */
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
 
-    /* Discover text below the image */
-    .discover-text {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #87CEFA; /* Light sky blue */
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-      margin-top: -10px;
-      margin-bottom: 20px;
-      animation: slideUp 1.2s ease forwards;
-    }
+.welcome-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* lighter overlay for more color visibility */
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.welcome-container h1,
+.welcome-container .discover-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Discover text styling inside welcome section */
+.discover-text {
+  font-size: 1.2rem;
+  color: #FFD700; /* bright gold for contrast */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  animation: slideUp 1.2s ease forwards;
+}
 
     @keyframes slideUp {
       0% { opacity: 0; transform: translateY(20px); }
@@ -226,11 +228,10 @@
     <a href="/articles">Astrology Articles</a>
   </nav>
 
-  <div class="welcome-container">
-    <h1>Welcome to the Kundli & Future Tips Generator</h1>
-  </div>
-
+<div class="welcome-container">
+  <h1>Welcome to the Kundli & Future Tips Generator</h1>
   <p class="discover-text">Discover your zodiac sign, Kundli, and personalized astrology tips instantly.</p>
+</div>
 
 
   <form method="POST" novalidate>
