@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kundli & Future Tips Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result, .error {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+        }
+        .error {
+            color: red;
+            font-weight: 600;
+        }
+        .result h2 {
+            margin-top: 0;
+            color: #34495e;
+        }
+        .result p {
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kundli & Future Tips Generator</h1>
 
+    <form method="POST">
+        <label for="birth_date">Enter your Birth Date:</label>
+        <input type="date" id="birth_date" name="birth_date" required />
+        <button type="submit">Generate Kundli & Tips</button>
+    </form>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if kundli %}
+    <div class="result">
+        <h2>Your Kundli</h2>
+        <p><strong>Birth Date:</strong> {{ kundli.birth_date }}</p>
+        <p><strong>Zodiac Sign:</strong> {{ kundli.zodiac_sign }}</p>
+        <p><strong>Element:</strong> {{ kundli.element }}</p>
+        <p><strong>Lucky Planet:</strong> {{ kundli.lucky_planet }}</p>
+
+        <h2>Future Tips</h2>
+        <p>{{ tips }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
