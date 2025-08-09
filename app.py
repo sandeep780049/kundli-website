@@ -47,7 +47,6 @@ def get_zodiac_sign(month, day):
     for zodiac in zodiac_signs:
         start_month, start_day = zodiac["start"]
         end_month, end_day = zodiac["end"]
-
         if start_month == 12 and end_month == 1:
             if (month == 12 and day >= start_day) or (month == 1 and day <= end_day):
                 return zodiac
@@ -88,35 +87,39 @@ def home():
                     error = "Could not determine your zodiac sign."
             except Exception:
                 error = "Invalid date format."
+
     return render_template('index.html', kundli=kundli, tips=tips, error=error)
 
 @app.route('/articles')
 def articles():
     articles_list = [
         {
-            "title": "Understanding Your Zodiac Sign",
-            "content": """
-            Your Zodiac sign is determined by the position of the Sun at the time of your birth. Each sign has unique traits, strengths, and challenges.
-            Learning about your Zodiac helps you understand yourself and others better.
-            """
+            "title": "Zodiac Signs Explained",
+            "content": """Each zodiac sign represents different personality traits and energies. From fiery Aries to calm Pisces, understanding your sign can help you navigate life."""
         },
         {
-            "title": "The Influence of Planets in Astrology",
-            "content": """
-            In astrology, planets represent different energies and influences in your life. For example, Mars governs courage and action, while Venus relates to love and beauty.
-            Knowing your lucky planets can guide your decisions.
-            """
+            "title": "Planetary Effects in Astrology",
+            "content": """Planets influence various aspects of your life, such as love, career, and health. Knowing their roles in your kundli can guide your decisions."""
         },
         {
-            "title": "How to Interpret Your Kundli",
-            "content": """
-            A Kundli is a map of the sky at your birth moment, showing positions of planets and houses. It reveals insights about your personality, career, relationships, and future.
-            Beginners can start with their Zodiac sign and gradually explore deeper aspects.
-            """
-        }
+            "title": "Astrology Basics for Beginners",
+            "content": """Learn about houses, planets, and zodiac signs to start your astrology journey with confidence."""
+        },
+        {
+            "title": "Tips & Tricks for Using Your Kundli",
+            "content": """Use your kundli wisely to improve relationships, career choices, and personal growth. Regularly update your chart with major life events."""
+        },
+        {
+            "title": "Glossary of Astrology Terms",
+            "content": """Understand common astrology terms like Ascendant, Nakshatra, and Retrograde to better read your charts."""
+        },
+        {
+            "title": "Expanded FAQ",
+            "content": """Answers to common questions about kundli generation, zodiac signs, and astrology interpretations."""
+        },
     ]
     return render_template('articles.html', articles=articles_list)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=port)
