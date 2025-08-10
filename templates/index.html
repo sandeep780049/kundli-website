@@ -46,11 +46,25 @@
   margin-bottom: 20px;
 }
 
+/* Improved welcome section styling */
+.welcome-container {
+  position: relative;
+  background-image: url('{{ url_for("static", filename="zodiac-bg.jpeg") }}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 100px 20px;       /* Increased vertical padding */
+  color: #fff;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
 .welcome-container::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* lighter overlay for more color visibility */
+  background: rgba(0, 0, 0, 0.35);  /* Lightened overlay for better clarity */
   z-index: 0;
   border-radius: 12px;
 }
@@ -58,18 +72,17 @@
 .welcome-container h1,
 .welcome-container .discover-text {
   position: relative;
-  z-index: 1;
+  z-index: 1;  /* Ensure text appears above overlay */
 }
 
-/* Discover text styling inside welcome section */
+/* Refined Discover subtitle */
 .discover-text {
-  font-size: 1.2rem;
-  color: #FFD700; /* bright gold for contrast */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 1.25rem;
+  color: #FFD700; /* Gold accent for contrast */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
   animation: slideUp 1.2s ease forwards;
 }
-
     @keyframes slideUp {
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
